@@ -29,7 +29,7 @@ class User
     {
         $sql = 'SELECT * FROM user';
         $db = new Db();
-        $db->ExecuteQuery($sql);
+        return $db->ExecuteQuery($sql);
     }
 
     public function nbMessage()

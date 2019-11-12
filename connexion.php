@@ -1,12 +1,22 @@
 <?php
-if(isset($_POST['nom']))
+if(isset($_POST['pseudo']))
 {
     require('./class/User.class.php');
-
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $param = array ($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['pseudo'], $password);
     $user = new User();
-    $user->create($param);
+    $t = $user->loadData();
+    while ($row = $t->fetch()) 
+    {
+        if (password_verify($_POST['password'], $row['mdp']))
+        {
+            session_start();
+            $_SESSION['id'] = $row['id'];
+            header('Location: index.php');
+        }
+        else
+        {
+            echo "Erreur";
+        }
+    }
 }
 ?>
 
@@ -20,12 +30,14 @@ if(isset($_POST['nom']))
     <title>Connexion</title>
 </head>
 <body>
-    <h1>Connexion</h1>
-    <form action="login.php" method="POST">
-        <input type="text" name="pseudo" placeholder="Pseudo" required="required">
-        <input type="password" name="password" placeholder="Mot de passe" required="required">
+    <div class="container">
+        <h1>Connexion</h1>
+        <form action="connexion.php" method="POST">
+        <input type="text" name="pseudo" placeholder="Pseudo" required>
+        <input type="password" name="password" placeholder="Mot de passe" required>
         <input type="submit">
-    </form>
-    <a href="inscription.php">S'incscrire</a>
+        </form>
+        <a href="inscription.php">S'incscrire</a>
+    </div>
 </body>
 </html>

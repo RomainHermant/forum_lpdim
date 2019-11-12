@@ -14,16 +14,17 @@ class Db {
 		}	
 	}
 
-	public function ExecuteNonQuery($query, $param=null)
+	public function ExecuteNonQuery($sql, $param=null)
 	{
 		$req = $this->bdd->prepare($sql);
 		$req->execute($param);
 	}
 
-	public function ExecuteQuery($query)
+	public function ExecuteQuery($sql)
 	{
-		$rslt = $this->bdd->query($sql);
-		return $rslt;
+		$req = $this->bdd->prepare($sql);
+		$req->execute();
+		return $req;
 	}
 }
 ?>
