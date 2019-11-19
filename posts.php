@@ -12,20 +12,23 @@ echo $_SESSION['id'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <title>Les topics</title>
+    <title>Messages</title>
 </head>
 <body>
     
 
     <div class="page">
-        <h1>Les posts</h1>
+        <h1>Les topics</h1>
         <div class="element">
             <?php
-                <a href="./topics.php">Jeux vidéos</a>
-                <a href="./topics.php">Informatique</a>
-                <a href="./topics.php">Smartphones</a>
-                <a href="./topics.php">Programmation</a>
-                <a href="./topics.php">Entraides</a>
+                require('./class/Post.class.php');
+                $post = new Post();
+                $id = array ($_GET['id']);
+                $lesPosts = $post->loadDataByIdTopic($id);
+                while ($row = $lesPosts->fetch()) 
+                {
+                    echo $row['contenu'];
+                }
 
             ?>
         </div>    

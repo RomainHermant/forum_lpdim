@@ -20,10 +20,10 @@ class Db {
 		$req->execute($param);
 	}
 
-	public function ExecuteQuery($sql)
+	public function ExecuteQuery($sql, $param=null)
 	{
 		$req = $this->bdd->prepare($sql);
-		$req->execute();
+		$req->execute($param);
 		return $req;
 	}
 }

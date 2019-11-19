@@ -1,5 +1,5 @@
 <?php
-require("./class/Db.class.php");
+require_once("./class/Db.class.php");
 
 class User 
 {
@@ -10,11 +10,18 @@ class User
     public $nbConnexion;
     public $lastConnexion;
     
-    /*public function __construct(){
+    public function __construct($id){
+        $sql = 'SELECT * FROM user WHERE id = ?';
         $db = new Db();
-        $rslt = $db->query('SELECT * FROM user')->fetchArray();
-        $this->$nom = $rslt['nom'];
-    }*/
+        $exe = $db->ExecuteQuery($sql, array($id));
+        while ($row = $exe->fetch())
+        {
+            $this->nom = $row['nom'];
+            $this->prenom = $row['prenom'];
+            $this->email = $row['email'];
+            $this->pseudo = $row['pseudo'];
+        }
+    }
 
 
     public function create($param)
@@ -32,9 +39,9 @@ class User
         return $db->ExecuteQuery($sql);
     }
 
-    public function nbMessage()
+    public function getPseudo()
     {
-
+        return $this->pseudo;
     }
     
     

@@ -17,17 +17,14 @@ session_start ();
 <body>
 
     <div class="page">
-        
-
-
         <h1>Forum</h1>
         <h2>Les catégories</h2>
         <div class="element">
-            <a href="./topics.php?categ=jeux-videos">Jeux vidéos</a>
-            <a href="./topics.php?categ=informatique">Informatique</a>
-            <a href="./topics.php?categ=smartphones">Smartphones</a>
-            <a href="./topics.php?categ=programmation">Programmation</a>
-            <a href="./topics.php?categ=entraides">Entraides</a>
+            <a href="./topics.php?id=2&categ=jeux-videos">Jeux vidéos</a>
+            <a href="./topics.php?id=3&categ=informatique">Informatique</a>
+            <a href="./topics.php?id=4&categ=smartphones">Smartphones</a>
+            <a href="./topics.php?id=5&categ=programmation">Programmation</a>
+            <a href="./topics.php?id=6&categ=entraides">Entraides</a>
         </div>
         
     </div>

@@ -19,19 +19,17 @@ echo $_SESSION['id'];
 
     <div class="page">
         <h1>Les topics</h1>
+        <a href="create_topic.php?id=6&categ=entraides">+</a>
         <div class="element">
             <?php
                 require('./class/Topic.class.php');
                 $topic = new Topic();
-                $lesTopics = $topic->loadData();
+                $theme = array ($_GET['categ']);
+                $lesTopics = $topic->loadDataByTheme($theme);
                 while ($row = $lesTopics->fetch()) 
                 {
-                    echo '<a href="./posts">'. $row['titre'] .'</a>';
-
-                    
+                    echo '<a href="./posts.php?id='. $row['0'] .'">'. $row['titre'] .'</a>';
                 }
-
-
 
             ?>
         </div>    
