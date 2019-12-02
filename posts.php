@@ -1,8 +1,19 @@
 <?php
-    include('./components/menu.html');
-
+include('./components/menu.html');
 session_start ();
-echo $_SESSION['id'];
+
+if(isset($_POST['submit']))
+{
+    require_once('./class/User.class.php');
+    require_once('./class/Post.class.php');
+    
+    $user = new User($_SESSION['id']);
+
+    $param = array ($_POST['contenu'], $_SESSION['id'], $_GET['idTopic']);
+    $post = new Post();
+    $post->create($param);
+    header('Location: index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +29,6 @@ echo $_SESSION['id'];
     
 
     <div class="page">
-        <h1>Les topics</h1>
         <div class="element">
             <?php
                 require('./class/Post.class.php');
@@ -29,9 +39,20 @@ echo $_SESSION['id'];
                 {
                     echo $row['contenu'];
                 }
-
             ?>
-        </div>    
+        </div>
+
+
+
+
+        <div class="container">
+        <?php
+        echo '<form action="posts.php?idTopic='. $_GET['idTopic'].'&id='. $_GET['id'].'" method="post">'
+        ?>
+            <textarea name="contenu" cols="100" rows="10" placeholder="Contenu de la réponse" required></textarea>
+            <input type="submit" name="submit">
+        </form>
+    </div>
     </div>
 
 

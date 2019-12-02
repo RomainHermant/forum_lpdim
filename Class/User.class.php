@@ -10,23 +10,22 @@ class User
     public $nbConnexion;
     public $lastConnexion;
     
-    public function __construct($id){
-        $sql = 'SELECT * FROM user WHERE id = ?';
+    public function __construct($id=null){
+        $sql = 'SELECT * FROM user WHERE idUser = ?';
         $db = new Db();
         $exe = $db->ExecuteQuery($sql, array($id));
         while ($row = $exe->fetch())
         {
-            $this->nom = $row['nom'];
-            $this->prenom = $row['prenom'];
-            $this->email = $row['email'];
-            $this->pseudo = $row['pseudo'];
+            $this->nom = $row['nomUser'];
+            $this->prenom = $row['prenomUser'];
+            $this->email = $row['emailUser'];
+            $this->pseudo = $row['pseudoUser'];
         }
     }
 
-
     public function create($param)
     {
-        $sql = 'INSERT INTO user(nom, prenom, email, pseudo, mdp) VALUES(?,?,?,?,?)';
+        $sql = 'INSERT INTO user(nomUser, prenomUser, emailUser, pseudoUser, mdpUser) VALUES(?,?,?,?,?)';
         $db = new Db();
         $db->ExecuteNonQuery($sql, $param);
         return $db;

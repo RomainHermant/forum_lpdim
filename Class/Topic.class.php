@@ -18,14 +18,14 @@ class Topic
 
     public function loadDataByTheme($theme)
     {
-        $sql = 'SELECT * FROM topic AS tp INNER JOIN theme AS tm ON tp.idTheme = tm.id WHERE libelle = ?';
+        $sql = 'SELECT * FROM topic AS tp INNER JOIN theme AS tm ON tp.idThemeTopic = tm.idTheme WHERE libelleTheme = ?';
         $db = new Db();
         return $db->ExecuteQuery($sql, $theme);
     }
 
     public function create($param)
     {
-        $sql = 'INSERT INTO topic(titre, contenuTp, lastUser, lastDate, idTheme) VALUES(?,?,?,CURDATE(),?)';
+        $sql = 'INSERT INTO topic(titreTopic, contenuTopic, lastUserTopic, lastDateTopic, idThemeTopic) VALUES(?,?,?,CURDATE(),?)';
         $db = new Db();
         $db->ExecuteNonQuery($sql, $param);
         return $db;

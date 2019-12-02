@@ -1,9 +1,21 @@
-<nav id="navbar">
-    <ul>
-        <li><a href="./index.php">Accueil</a></li>
-        <li><a href="news.asp">Membres</a></li>
-        <li><a href="contact.asp">Forum</a></li>
-        <li><a href="about.asp">Logout</a></li>
-        <li><a href="#"><img src="./img/user-avatar-defaut.svg" width="60px" id="avatar"></a></li>
-    </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+    <a class="navbar-brand" href="index.php">Le Forum</a>
+    <div class="collapse justify-content-between navbar-collapse ml-3" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.php">Accueil<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href='creerTopic.php'>Membres</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class=nav-link href="#"><img src="./img/user-avatar-defaut.svg" width="40px" id="avatar"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="connexion.php">Logout</a>
+            </li>
+        </ul>
+    </div>
 </nav>
