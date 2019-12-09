@@ -1,25 +1,3 @@
-<?php
-if(isset($_POST['pseudo']))
-{
-    require('./class/User.class.php');
-    $user = new User();
-    $t = $user->loadData();
-    while ($row = $t->fetch()) 
-    {
-        if (password_verify($_POST['password'], $row['mdpUser']))
-        {
-            session_start();
-            $_SESSION['id'] = $row['idUser'];
-            header('Location: index.php');
-        }
-        else
-        {
-            echo "Erreur";
-        }
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -45,6 +23,28 @@ if(isset($_POST['pseudo']))
                 <input type="submit" name="submit" class="btn btn-primary btn-block mb-1" value="Connexion">
                 <small class="form-link sign-up">Tu n'es pas encore inscrit ? <u><a href=inscription.php>Fais le vite ici !</a></u></small>
             </form>
+
+            <?php
+                if(isset($_POST['pseudo']) && isset($_POST['password']))
+                {
+                    require('./class/User.class.php');
+                    $user = new User();
+                    $t = $user->loadData();
+                    while ($row = $t->fetch()) 
+                    {
+                        if (password_verify($_POST['password'], $row['mdpUser']))
+                        {
+                            session_start();
+                            $_SESSION['id'] = $row['idUser'];
+                            header('Location: index.php');
+                        }
+                    }
+                    echo '<div class="alert alert-danger mt-3" role="alert">
+                            ERREUR - Le pseudo ne correspond pas au mot de passe !
+                        </div>';
+                }
+            ?>
+            
         </div>
     </div>
 </body>

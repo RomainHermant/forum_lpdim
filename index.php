@@ -2,7 +2,6 @@
     include('./components/menu.html');
 
 session_start ();
-//echo $_SESSION['id'];
 ?>
 
 <!DOCTYPE html>

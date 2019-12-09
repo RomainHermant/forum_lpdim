@@ -16,7 +16,7 @@ class Topic
     }*/
 
 
-    public function loadDataByTheme($theme)
+    public function getDataByTheme($theme)
     {
         $sql = 'SELECT * FROM topic AS tp INNER JOIN theme AS tm ON tp.idThemeTopic = tm.idTheme WHERE libelleTheme = ?';
         $db = new Db();
@@ -29,6 +29,12 @@ class Topic
         $db = new Db();
         $db->ExecuteNonQuery($sql, $param);
         return $db;
+    }
+
+    public function getContenuTopic ($id) {
+        $sql = "SELECT * FROM topic AS t WHERE t.idTopic = ?";
+        $db = new Db();
+        return $db->ExecuteQuery($sql, $id);
     }
 
 

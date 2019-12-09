@@ -23,11 +23,11 @@ session_start ();
         </h2>
         
         <div class="mt-3">
-            <table class="table">
+            <table class="table text-center">
                 <thead class="thead-light">
                     <tr>
                       <th scope="col">Titre</th>
-                      <th scope="col">Dernier message</th>
+                      <th scope="col">Créateur</th>
                       <th scope="col">Nombre de réponses</th>
                       <th scope="col">Date</th>
                     </tr>
@@ -35,22 +35,29 @@ session_start ();
                 <tbody>
                   
                   <?php
-                    require('./class/Topic.class.php');
+                    require_once('./class/Topic.class.php');
+                    require_once('./class/Post.class.php');
                     $topic = new Topic();
                     $theme = array ($_GET['categ']);
-                    $lesTopics = $topic->loadDataByTheme($theme);
-                    while ($row = $lesTopics->fetch()) 
-                    {
-                        echo '<tr>
-                                <td>
-                                    <a href="./posts.php?idTopic='. $_GET['id'] .'&id='. $row['0'] .'">'. $row['titreTopic'] .'</a>
-                                </td>
-                                <td>'. $row['lastUserTopic'] .'</td>
-                                <td>'. $row['idThemeTopic'] .'</td>
-                                <td>'. $row['lastDateTopic'] .'</td>
-                              </tr>';
-                    }
-                    ?>  
+                    $lesTopics = $topic->getDataByTheme($theme);
+
+                    while ($row = $lesTopics->fetch()): ?>
+                        <tr>
+                            <td>
+                                <a href="./posts.php?idTopic=<?= $row['idTopic']; ?>"><?= $row['titreTopic']; ?></a>
+                            </td>
+                            <td><?= $row['lastUserTopic']; ?></td>
+                            <td>
+                                <?php
+                                    $post = new Post();
+                                    $lesPosts = $post->getNbPosts(array($row['idTopic']));
+                                    $donnees = $lesPosts->fetch();
+                                    echo $donnees['NbPosts'];
+                                ?>
+                            </td>
+                            <td><?= $row['lastDateTopic']; ?></td>
+                        </tr>
+                    <?php endwhile; ?>
                 </tbody>
             </table>
         </div>

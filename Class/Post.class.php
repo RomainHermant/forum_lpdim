@@ -9,7 +9,7 @@ class Post
     public $date;
     
 
-    public function loadDataByIdTopic($id)
+    public function getDataByIdTopic($id)
     {
         $sql = 'SELECT * FROM post AS p INNER JOIN topic AS t ON p.idTopicPost = t.idTopic WHERE t.idTopic = ?';
         $db = new Db();
@@ -22,6 +22,21 @@ class Post
         $db = new Db();
         $db->ExecuteNonQuery($sql, $param);
         return $db;
+    }
+
+    public function getAll($id)
+    {
+        $sql = 'SELECT * FROM post WHERE idTopicPost = ?';
+        $db = new Db();
+        return $db->ExecuteQuery($sql, $id);
+        
+    }
+
+    public function getNbPosts($id) 
+    {
+        $sql = 'SELECT COUNT(*) as NbPosts FROM post WHERE idTopicPost = ?';
+        $db = new Db();
+        return $db->ExecuteQuery($sql, $id);
     }
 
       

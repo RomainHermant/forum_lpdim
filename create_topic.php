@@ -29,7 +29,7 @@ if(isset($_POST['submit']))
     <div class="col-md-5 mx-auto mt-5">
         <div class="card card-body">
             <h3 class="card-title text-center">Créer un topic</h3>
-            <?php echo '<form action="create_topic.php?'. $_GET['id'] .'" method="POST">'; ?>
+            <form action="create_topic.php?id=<?= $_GET['id'] ?>" method="POST">
                 <div class="form-group">
                     <label for="titre">Titre</label>
                     <input type="text" class="form-control" name="titre" placeholder="Titre de ton topic">
