@@ -9,6 +9,7 @@ class User
     public $pseudo;
     public $nbConnexion;
     public $lastConnexion;
+    public $avatar;
     
     public function __construct($id=null){
         $sql = 'SELECT * FROM user WHERE idUser = ?';
@@ -20,6 +21,7 @@ class User
             $this->prenom = $row['prenomUser'];
             $this->email = $row['emailUser'];
             $this->pseudo = $row['pseudoUser'];
+            $this->avatar = $row['avatar'];
         }
     }
 
@@ -42,9 +44,18 @@ class User
     {
         return $this->pseudo;
     }
+
+    public function updateAvatar($param)
+    {
+        $sql = 'UPDATE user SET avatar = ? WHERE idUser = ?';
+        $db = new Db();
+        $db->ExecuteNonQuery($sql, $param);
+    }
     
-    
-    
+    public function getAvatar()
+    {
+        return $this->avatar;
+    } 
 }
 
 ?>

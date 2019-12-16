@@ -1,7 +1,6 @@
 <?php
-    include('./components/menu.html');
-
 session_start ();
+include('./components/menu.php');
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +18,7 @@ session_start ();
         <div class="mt-3">
             <ul class="list-group">
                 <?php
-                    require_once('./class/Discussion.class.php');
+                    /*require_once('./class/Discussion.class.php');
                     $discu = new Discussion();
                     $id = array($_SESSION['id']);
                     $lesDiscus = $discu->getAll($id);
@@ -29,7 +28,7 @@ session_start ();
                             <span class="float-right">Par : admin</span>
                         </li>
                     <?php endwhile; 
-                ?>
+                */?>
             </ul>
         </div>
     </div>

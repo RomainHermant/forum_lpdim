@@ -1,6 +1,6 @@
 <?php
-include('./components/menu.html');
 session_start ();
+include('./components/menu.php');
 
 if(isset($_POST['submit']))
 {

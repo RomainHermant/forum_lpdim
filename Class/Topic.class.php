@@ -9,12 +9,6 @@ class Topic
     public $pseudoCreateur;
     public $lastUser;
     public $lastDate;
-    //public $idTheme;
-
-     /*public function __construct(){
-        
-    }*/
-
 
     public function getDataByTheme($theme)
     {
@@ -35,12 +29,7 @@ class Topic
         $sql = "SELECT * FROM topic AS t WHERE t.idTopic = ?";
         $db = new Db();
         return $db->ExecuteQuery($sql, $id);
-    }
-
-
-    
-    
-    
+    }  
 }
 
 ?>

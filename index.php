@@ -1,7 +1,10 @@
 <?php
-    include('./components/menu.html');
+    session_start ();
+    include('./components/menu.php');
 
-session_start ();
+    if (is_null($_SESSION['id'])){
+        header('Location: connexion.php');
+    }
 ?>
 
 <!DOCTYPE html>

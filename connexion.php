@@ -14,11 +14,11 @@
             <form action="connexion.php" method="POST">
                 <div class="form-group">
                     <label for="pseudo">Pseudonyme</label>
-                    <input type="text" class="form-control" name="pseudo" placeholder="Ton pseudo">
+                    <input type="text" class="form-control" name="pseudo" placeholder="Ton pseudo" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Mot de passe</label>
-                    <input type="password" class="form-control" name="password" placeholder="Ton mot de passe">
+                    <input type="password" class="form-control" name="password" placeholder="Ton mot de passe" required>
                 </div>
                 <input type="submit" name="submit" class="btn btn-primary btn-block mb-1" value="Connexion">
                 <small class="form-link sign-up">Tu n'es pas encore inscrit ? <u><a href=inscription.php>Fais le vite ici !</a></u></small>
@@ -32,7 +32,7 @@
                     $t = $user->loadData();
                     while ($row = $t->fetch()) 
                     {
-                        if (password_verify($_POST['password'], $row['mdpUser']))
+                        if (password_verify($_POST['password'], $row['mdpUser']) && $_POST['pseudo'] == $row['pseudoUser'])
                         {
                             session_start();
                             $_SESSION['id'] = $row['idUser'];

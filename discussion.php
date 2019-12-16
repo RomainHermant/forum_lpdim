@@ -1,7 +1,6 @@
 <?php
-include('./components/menu.html');
-
 session_start ();
+include('./components/menu.php');
 ?>
 
 <!DOCTYPE html>

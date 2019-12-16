@@ -8,7 +8,6 @@ class Post
     public $createBy;
     public $date;
     
-
     public function getDataByIdTopic($id)
     {
         $sql = 'SELECT * FROM post AS p INNER JOIN topic AS t ON p.idTopicPost = t.idTopic WHERE t.idTopic = ?';
@@ -38,10 +37,6 @@ class Post
         $db = new Db();
         return $db->ExecuteQuery($sql, $id);
     }
-
-      
- 
 }
-
 
 ?>

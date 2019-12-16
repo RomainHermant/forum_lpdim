@@ -3,7 +3,7 @@ if(isset($_POST['nom']))
 {
     require('./class/User.class.php');
 
-    $password = password_hash($_POST['passwordUser'], PASSWORD_DEFAULT);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $param = array ($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['pseudo'], $password);
     $user = new User();
     $user->create($param);
